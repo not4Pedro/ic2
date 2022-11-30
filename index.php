@@ -6,7 +6,6 @@
 		$username=$_POST['username'];
 		$query = "select * from verify($1);";
 		$res = pg_query_params($cn,$query,array($username));
-		echo "Connected";
 		$result = pg_fetch_object($res);
 		if($result)
 		{
@@ -18,7 +17,7 @@
 		}
 		else
 		{
-			$output = "Wrong pass";
+			$output = "Wrong password";
 		}
 	}
 ?>
@@ -26,8 +25,9 @@
 <html>
 <head>
 	<title>LOGIN</title>
-	<link rel="stylesheet" a href="style.css">
-	<link rel="stylesheet" a href="css\font-awesome.min.css">
+	<link href='https://css.gg/arrow-right-o.css' rel='stylesheet'>
+	<link rel="stylesheet" href="./style.css" type="text/css"/>
+	<link href='https://css.gg/password.css' rel='stylesheet'>
 </head>
 <body>
 	<div class="container">
@@ -36,11 +36,12 @@
 				<input type="text" name="username" placeholder="Enter the username"/>	
 			</div>
 			<div class="form-input">
+				<i class="gg-password"></i>
 				<input type="password" name="password" placeholder="password"/>
 			</div>
 			<input type="submit" value="Verify" name="verify" class="btn-login"/>
 			</form>
-			<p><?php echo $output ?></p>
+			<p id="error"><?php echo $output ?></p>
 	</div>
 </body>
 </html>
